@@ -17,17 +17,17 @@ function Vehicle(brand, model, year, mileage) {
   this.model = model;
   this.year = year;
   this.mileage = mileage;
-
-  // Перевизначаємо метод toString()
-  this.toString = function () {
-    return `${this.brand} ${this.model} ${this.year}`;
-  };
-
-  // Перевизначаємо метод valueOf()
-  this.valueOf = function () {
-    return this.mileage;
-  };
 }
+
+// Перевизначаємо метод toString()
+Vehicle.toString = function () {
+  return `${this.brand} ${this.model} (${this.year})`;
+};
+
+// Перевизначаємо метод valueOf()
+Vehicle.valueOf = function () {
+  return this.mileage;
+};
 
 // Рядковому представленю Vehicle призначаємо функцію яка повертає рядок: <brand> <model> <year>
 
@@ -56,21 +56,21 @@ function Car(brand, model, year, mileage, fuelType, speed) {
   //  Записуєм в this.fuelType значення аргументу fuelType, в this.speed значення аргументу speed
   this.fuelType = fuelType;
   this.speed = speed;
-
-  this.toString = function () {
-    return `${this.brand} ${this.model} ${this.year} - ${this.fuelType}`;
-  };
-
-  this.accelerate = function (value) {
-    this.speed += value;
-    console.log(`Автомобіль ${this.brand} ${this.model} прискорився до швидкості ${this.speed} км/год`);
-  };
-
-  this.brake = function (value) {
-    this.speed -= value;
-    console.log(`Автомобіль ${this.brand} ${this.model} зменшив до швидкості ${this.speed} км/год`);
-  };
 }
+
+Car.prototype.toString = function () {
+  return `${this.brand} ${this.model} (${this.year}) - ${this.fuelType}`;
+};
+
+Car.prototype.accelerate = function (increment) {
+  this.speed += increment;
+  console.log(`Автомобіль ${this.brand} ${this.model} прискорився до швидкості ${this.speed} км/год`);
+};
+
+Car.prototype.brake = function (decrement) {
+  this.speed -= decrement;
+  console.log(`Автомобіль ${this.brand} ${this.model} зменшив швидкість до ${this.speed} км/год`);
+};
 
 // Ми можемо перевизначити методи з Vehicle в Car.
 // Рядковому представленю прототипу Car призначаємо функцію яка повертає рядок: <brand> <model> <year> - <fuelType>.
